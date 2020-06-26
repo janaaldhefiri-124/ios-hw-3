@@ -86,20 +86,55 @@ var wild_Draw = UIImage(named: "Wild_Draw.png")
 
 
 /// قم بإنشاء الستركت هنا
+struct card{
+    var color: String?
+    var number: Int?
+    var actions: String?
+    
+    
+    func imageName() -> String{
+        if number != nil{
+            return "\(color!)_\(number!).png"
+        }else if actions == "Wild" || actions == "Wild_draw"{
+            return "\(actions!).png"
+        }else {
+            return "\(color!)_\(actions!).png"
+        }
+        
+        
+    }
+}
 
-// struct ...
+
+var cards: [card] = []
+var color = ["Red", "Yellow", "Blue", "Green"]
+var number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+var actions = ["Draw", "Reverse", "Skip", "Wild_draw", "Wild"]
 
 
+
+for colour in color{
+    for number in 0...9{
+        cards.append(card(color: colour, number: number))
+    }
+    for number in 1...9{
+        cards.append(card(color: colour, number: number))}
+ for action in actions {
+    cards.append(card(color: colour, actions: action))
+}
+
+}
 
 
 
 // لا تقم بإزالة الملاحظات إلا عند وصولك للمطلوب الثالث
 
-//
-//let randomCard = cards.randomElement()!
-//let randomCardImage = UIImage(named: randomCard.imageName())
-//
-//
-//let cardImages = cards.map{UIImage(named: $0.imageName())}
-//randomCardImage
-//cardImages
+let randomCard = cards.randomElement()!
+let randomCardImage = UIImage(named: randomCard.imageName())
+
+
+let cardImages = cards.map{UIImage(named: $0.imageName())}
+randomCardImage
+cardImages
+
+
